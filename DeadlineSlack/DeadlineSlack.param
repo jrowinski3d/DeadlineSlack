@@ -8,7 +8,7 @@ Default=Disabled
 Description=How this event plug-in should respond to events. If Global, all jobs and slaves will trigger the events for this plugin. If Opt-In, jobs and slaves can choose to trigger the events for this plugin. If Disabled, no events are triggered for this plugin.
 
 [SlackAPIKey]
-Type=string
+Type=Password
 Label=Slack API key
 Category=Options
 CategoryOrder=0
@@ -22,7 +22,7 @@ Label=Slack Channel
 Category=Options
 CategoryOrder=0
 Description=The slack #channel to post to.
-Default=#channel
+Default=#jastest
 Required=True
 
 [SlackAsUser]
@@ -42,7 +42,7 @@ Type=MultiLineString
 Label=On Job Finished Message
 Description=The unformatted message posted on job finish
 Required=True
-Default=*Submitted*: _{job.JobName}_;```Submitted by: {job.JobUserName};Plug-in: {job.JobPlugin};Priority: {job.JobPriority} (pool: {job.JobPool});Framerange: {job.JobFrames}
+Default=*Submitted*: :tada: _{job.JobName}_ :tada: ;Submitted by: {job.JobUserName};Plug-in: {job.JobPlugin};Priority: {job.JobPriority} (pool: {job.JobPool});Framerange: {job.JobFrames}; Report: ```{report.ReportMessage}```
 
 [SlackOnJobDeletedMessage]
 Category=Job Callbacks
@@ -50,7 +50,7 @@ CategoryOrder=1
 Type=MultiLineString
 Label=On Job Deleted Message
 Description=The unformatted message posted on job delete
-Required=True
+Required=False
 Default=
 
 [SlackOnJobFailedMessage]
@@ -59,8 +59,8 @@ CategoryOrder=1
 Type=MultiLineString
 Label=On Job Failed Message
 Description=The unformatted message posted on job failure
-Required=True
-Default=
+Required=False
+Default=*Failed*: :firecracker: _{job.JobName}_ :firecracker: ;Submitted by: {job.JobUserName};Plug-in: {job.JobPlugin};Priority: {job.JobPriority} (pool: {job.JobPool});Framerange: {job.JobFrames}; Report: ```{report.ReportMessage}```
 
 [SlackOnJobPendedMessage]
 Category=Job Callbacks
@@ -68,7 +68,7 @@ CategoryOrder=1
 Type=MultiLineString
 Label=On Job Pended Message
 Description=The unformatted message posted on job pended
-Required=True
+Required=False
 Default=
 
 [SlackOnJobReleasedMessage]
@@ -77,7 +77,7 @@ CategoryOrder=1
 Type=MultiLineString
 Label=On Job Released Message
 Description=The unformatted message posted on job release
-Required=True
+Required=False
 Default=
 
 [SlackOnJobRequeuedMessage]
@@ -95,7 +95,7 @@ CategoryOrder=1
 Type=MultiLineString
 Label=On Job Resumed Message
 Description=The unformatted message posted on job resume
-Required=True
+Required=False
 Default=
 
 [SlackOnJobPurgedMessage]
@@ -104,7 +104,7 @@ CategoryOrder=1
 Type=MultiLineString
 Label=On Job Purged Message
 Description=The unformatted message posted on job purge
-Required=True
+Required=False
 Default=
 
 [SlackOnJobStartedMessage]
@@ -113,17 +113,17 @@ CategoryOrder=1
 Type=MultiLineString
 Label=On Job Started Message
 Description=The unformatted message posted on job start
-Required=True
+Required=False
 Default=
 
-[SlackOnJobSubmittedMessage] 
+[SlackOnJobSubmittedMessage]
 Category=Job Callbacks
 CategoryOrder=1
 Type=MultiLineString
 Label=On Job Submitted Message
 Description=The unformatted message posted on job submitted
 Required=True
-Default=
+Default=*Submitted*: _{job.JobName}_;Submitted by: {job.JobUserName};Plug-in: {job.JobPlugin};Priority: {job.JobPriority} (pool: {job.JobPool});Framerange: {job.JobFrames};
 
 [SlackOnJobSuspendedMessage]
 Category=Job Callbacks
@@ -131,7 +131,7 @@ CategoryOrder=1
 Type=MultiLineString
 Label=On Job Suspended Message
 Description=The unformatted message posted on job suspend
-Required=True
+Required=False
 Default=
 
 # ON JOB ERROR
@@ -142,7 +142,7 @@ Type=MultiLineString
 Label=On Job Error Message
 Description=The unformatted message posted on job error
 Required=True
-Default=*Job Error:* {job.JobName}
+Default=*Job Error*: :firecracker: _{job.JobName}_ :firecracker: ;Submitted by: {job.JobUserName};Plug-in: {job.JobPlugin};Priority: {job.JobPriority} (pool: {job.JobPool});Framerange: {job.JobFrames}; Report: ```{report.ReportMessage}```
 
 # ON SLAVE
 [SlackOnSlaveIdleMessage]
@@ -151,7 +151,7 @@ CategoryOrder=3
 Type=MultiLineString
 Label=On Slave Idle Message
 Description=The unformatted message posted on slave idle
-Required=True
+Required=False
 Default=
 
 [SlackOnSlaveStalledMessage]
@@ -169,7 +169,7 @@ CategoryOrder=3
 Type=MultiLineString
 Label=On Slave Started Message
 Description=The unformatted message posted on slave started
-Required=True
+Required=False
 Default=
 
 [SlackOnSlaveStoppedMessage]
@@ -178,7 +178,7 @@ CategoryOrder=3
 Type=MultiLineString
 Label=On Slave Stopped Message
 Description=The unformatted message posted on slave stopped
-Required=True
+Required=False
 Default=
 
 # ON SLAVE JOB
@@ -188,7 +188,7 @@ CategoryOrder=4
 Type=MultiLineString
 Label=On Slave Rendering Message
 Description=The unformatted message posted on slave start rendering
-Required=True
+Required=False
 Default=
 
 [SlackOnSlaveStartingJobMessage]
@@ -197,5 +197,5 @@ CategoryOrder=4
 Type=MultiLineString
 Label=On Slave Starting Job Message
 Description=The unformatted message posted on slave starting job
-Required=True
+Required=False
 Default=
